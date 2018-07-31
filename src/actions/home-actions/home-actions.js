@@ -2,11 +2,23 @@ export const REQUEST_STATIONS = 'REQUEST_STATIONS';
 export const RECEIVE_STATIONS = 'RECEIVE_STATIONS';
 export const SET_ARRIVAL_STATION = 'SET_ARRIVAL_STATION';
 export const SET_DEPARTURE_STATION = 'SET_DEPARTURE_STATION';
+export const REQUEST_TIMETABLE = 'REQUEST_TIMETABLE';
+export const RECEIVE_TIMETABLE = 'RECEIVE_TIMETABLE';
 
 import StationsFactory from '../../shared/factories/stations-factory/stations-factory';
 
 /**
- * Action for receiving response from HomePage
+ * Request Stations action
+ * @returns {Object}
+ */
+function requestStations () {
+  return {
+    type: REQUEST_STATIONS
+  };
+}
+
+/**
+ * Receive Stations action
  * @param response
  * @returns {Object}
  */
@@ -14,16 +26,6 @@ function receiveStations (response) {
   return {
     type: RECEIVE_STATIONS,
     data: response.data.stations
-  };
-}
-
-/**
- * Request HomePage action
- * @returns {Object}
- */
-function requestStations () {
-  return {
-    type: REQUEST_STATIONS
   };
 }
 
@@ -52,6 +54,27 @@ function setArrivalStation (station) {
 }
 
 /**
+ * Request timetable action
+ * @returns {Object}
+ */
+function requestTimetable () {
+  return {
+    type: REQUEST_TIMETABLE
+  };
+}
+
+/**
+ * Receive timetable action
+ * @returns {Object}
+ */
+function receiveTimetable (response) {
+  return {
+    type: RECEIVE_TIMETABLE,
+    data: response.data.departures.all
+  };
+}
+
+/**
  * Async action creator for getting pagehome data
  * @returns {function}
  */
@@ -59,7 +82,23 @@ export function fetchStations () {
   return dispatch => {
     dispatch(requestStations());
 
-    return StationsFactory.getStations().then(response => dispatch(receiveStations(response)));
+    return StationsFactory.getStations()
+      .then(response => dispatch(receiveStations(response)));
+  };
+}
+
+/**
+ * fetchTimetable
+ * @param  {String} departureStation
+ * @param  {String} arrivalStation
+ * @return {Promise}
+ */
+export function fetchTimetable (departureStation, arrivalStation) {
+  return dispatch => {
+    dispatch(requestTimetable());
+
+    return StationsFactory.getTrainTimetable(departureStation, arrivalStation)
+      .then(response => dispatch(receiveTimetable(response)));
   };
 }
 

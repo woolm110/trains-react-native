@@ -2,7 +2,9 @@ import {
   REQUEST_STATIONS,
   RECEIVE_STATIONS,
   SET_DEPARTURE_STATION,
-  SET_ARRIVAL_STATION
+  SET_ARRIVAL_STATION,
+  REQUEST_TIMETABLE,
+  RECEIVE_TIMETABLE
 } from '../../actions/home-actions/home-actions';
 
 const defaultState = {
@@ -38,7 +40,7 @@ export default function (state = defaultState, action) {
 
       return Object.assign({}, state, {
         isFetching: false,
-        data: stations
+        stations
       });
     case SET_DEPARTURE_STATION:
       return Object.assign({}, state, {
@@ -47,6 +49,15 @@ export default function (state = defaultState, action) {
     case SET_ARRIVAL_STATION:
       return Object.assign({}, state, {
         arrivalStation: action.data
+      });
+    case REQUEST_TIMETABLE:
+      return Object.assign({}, state, {
+        isFetching: true
+      });
+    case RECEIVE_TIMETABLE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        timetable: action.data
       });
     default:
       return state;

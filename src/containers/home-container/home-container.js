@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Text, TextInput, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, TouchableHighlight, Button } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Picker from 'react-native-picker-select';
+import Timetable from '../../components/timetable/timetable';
 
 import * as homeActions from '../../actions/home-actions/home-actions';
 
@@ -18,11 +19,11 @@ class HomeContainer extends Component {
   }
 
   /**
-   * renderContent
+   * renderSelectBoxes
    * @param  {Object} stations
    * @return {JSX}
    */
-  renderContent (stations) {
+  renderSelectBoxes (stations) {
     return (
       <View style={styles.container}>
         <Text style={styles.textInput}>Departure Station</Text>
@@ -40,6 +41,25 @@ class HomeContainer extends Component {
           onValueChange={value => this.props.updateArrivalStation(value)}
           style={{ ...pickerSelectStyles }}
         />
+
+        <TouchableHighlight
+          style ={{
+            height: 40,
+            width: '60%',
+            borderRadius: 5,
+            backgroundColor: '#54c488',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: 25,
+          }}>
+          <Button
+            onPress={() => this.props.fetchTimetable(this.props.home.departureStation, this.props.home.arrivalStation)}
+            color="#fff"
+            title="SEARCH"
+          >
+            <Text style={{color: '#ff0000'}}>Search</Text>
+          </Button>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -52,7 +72,10 @@ class HomeContainer extends Component {
     return (
       <View>
         {
-          !this.props.home.isFetching && this.props.home.data && this.renderContent(this.props.home.data)
+          !this.props.home.isFetching && this.props.home.stations && this.renderSelectBoxes(this.props.home.stations)
+        }
+        {
+          !this.props.home.isFetching && this.props.home.timetable && <Timetable trains={this.props.home.timetable} />
         }
       </View>
     );
