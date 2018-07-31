@@ -1,6 +1,8 @@
 import {
   REQUEST_STATIONS,
-  RECEIVE_STATIONS
+  RECEIVE_STATIONS,
+  SET_DEPARTURE_STATION,
+  SET_ARRIVAL_STATION
 } from '../../actions/home-actions/home-actions';
 
 /**
@@ -32,6 +34,14 @@ export default function (state = {}, action) {
       return Object.assign({}, state, {
         isFetching: false,
         data: stations
+      });
+    case SET_DEPARTURE_STATION:
+      return Object.assign({}, state, {
+        departureStation: action.data
+      });
+    case SET_ARRIVAL_STATION:
+      return Object.assign({}, state, {
+        arrivalStation: action.data
       });
     default:
       return state;

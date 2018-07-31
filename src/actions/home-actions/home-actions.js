@@ -1,12 +1,14 @@
 export const REQUEST_STATIONS = 'REQUEST_STATIONS';
 export const RECEIVE_STATIONS = 'RECEIVE_STATIONS';
+export const SET_ARRIVAL_STATION = 'SET_ARRIVAL_STATION';
+export const SET_DEPARTURE_STATION = 'SET_DEPARTURE_STATION';
 
 import StationsFactory from '../../shared/factories/stations-factory/stations-factory';
 
 /**
  * Action for receiving response from HomePage
  * @param response
- * @returns {{type: string, data: Object}}
+ * @returns {Object}
  */
 function receiveStations (response) {
   return {
@@ -17,11 +19,35 @@ function receiveStations (response) {
 
 /**
  * Request HomePage action
- * @returns {{type: string}}
+ * @returns {Object}
  */
 function requestStations () {
   return {
     type: REQUEST_STATIONS
+  };
+}
+
+/**
+ * setDepartureStation
+ * @param {String} station
+ * @returns {Object}
+ */
+function setDepartureStation (station) {
+  return {
+    type: SET_DEPARTURE_STATION,
+    data: station
+  };
+}
+
+/**
+ * setArrivalStation
+ * @param {String} station
+ * @returns {Object}
+ */
+function setArrivalStation (station) {
+  return {
+    type: SET_ARRIVAL_STATION,
+    data: station
   };
 }
 
@@ -35,5 +61,23 @@ export function fetchStations () {
 
     return StationsFactory.getStations().then(response => dispatch(receiveStations(response)));
   };
+}
+
+/**
+ * updateDepartureStation
+ * @param  {String} station
+ * @return {Function}
+ */
+export function updateDepartureStation (station) {
+  return dispatch => dispatch(setDepartureStation(station));
+}
+
+/**
+ * updateArrivalStation
+ * @param  {String} station
+ * @return {Function}
+ */
+export function updateArrivalStation (station) {
+  return dispatch => dispatch(setArrivalStation(station));
 }
 

@@ -17,33 +17,26 @@ class HomeContainer extends Component {
     this.props.fetchStations();
   }
 
-  selectDepartureStation (train) {
-    console.log(train);
-  }
-
-  selectArrivalStation (train) {
-    console.log(train);
-  }
-
   /**
    * renderContent
    * @param  {Object} stations
    * @return {JSX}
    */
   renderContent (stations) {
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Text style={styles.textInput}>Departure Station</Text>
         <Picker
           items={stations}
-          onValueChange={value => console.log(value)}
+          onValueChange={value => this.props.updateDepartureStation(value)}
           style={{ ...pickerSelectStyles }}
         />
 
         <Text style={styles.textInput}>Return Station</Text>
         <Picker
           items={stations}
-          onValueChange={value => console.log(value)}
+          onValueChange={value => this.props.updateArrivalStation(value)}
           style={{ ...pickerSelectStyles }}
         />
       </View>
