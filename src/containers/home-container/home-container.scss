@@ -1,0 +1,7 @@
+@import 'shared/styles/mixins';
+
+.home-container {
+  &__content {
+    @include span-columns(12);
+  }
+}
