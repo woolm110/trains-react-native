@@ -16,9 +16,22 @@ export default function (state = {}, action) {
         isFetching: true
       });
     case RECEIVE_STATIONS:
+      const stations = action.data
+        .map(item => ['name', 'station_code']
+          .reduce((accumulator, currentValue) => {
+            const mapToNewValue = {
+              'name': 'label',
+              'station_code': 'value'
+            };
+            const newValue = mapToNewValue[currentValue] || currentValue;
+
+            return accumulator[newValue] = item[currentValue], accumulator;
+          }, {})
+      );
+
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.data
+        data: stations
       });
     default:
       return state;

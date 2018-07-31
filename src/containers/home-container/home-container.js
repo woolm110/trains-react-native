@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Alert, Text, TextInput, StyleSheet, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Select, Option } from "react-native-chooser";
+import Picker from 'react-native-picker-select';
 
 import * as homeActions from '../../actions/home-actions/home-actions';
 
@@ -32,23 +32,19 @@ class HomeContainer extends Component {
    */
   renderContent (stations) {
     return (
-      <View>
-        <Select
-          onSelect={this.selectDepartureStation.bind(this)}
-          style={{marginBottom: 10}}
-          defaultText="Select Departure Station"
-        >
-          { stations.map(station => <Option value={station.name}>{station.name}</Option>) }
-        </Select>
-        <Select
-          onSelect={this.selectArrivalStation.bind(this)}
-          defaultText="Select Arrival Station"
-        >
-          { stations.map(station => <Option value={station.name}>{station.name}</Option>) }
-        </Select>
-        <Button
-          title="Search"
-          color="#841584"
+      <View style={styles.container}>
+        <Text style={styles.textInput}>Departure Station</Text>
+        <Picker
+          items={stations}
+          onValueChange={value => console.log(value)}
+          style={{ ...pickerSelectStyles }}
+        />
+
+        <Text style={styles.textInput}>Return Station</Text>
+        <Picker
+          items={stations}
+          onValueChange={value => console.log(value)}
+          style={{ ...pickerSelectStyles }}
         />
       </View>
     );
@@ -68,6 +64,34 @@ class HomeContainer extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 30,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    paddingHorizontal: 10
+  },
+  textInput: {
+    marginTop: 20,
+    marginBottom: 2
+  }
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingTop: 13,
+    paddingHorizontal: 10,
+    paddingBottom: 12,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    backgroundColor: 'white',
+    color: 'black',
+    minWidth: '80%',
+  }
+});
 
 HomeContainer.propTypes = {
   fetchStations: PropTypes.func.isRequired,
