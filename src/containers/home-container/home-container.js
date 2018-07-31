@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as homeActions from '../../actions/home-actions/home-actions';
+import { Select, Option } from "react-native-chooser";
 
-import StationsFactory from '../../shared/factories/stations-factory/stations-factory';
+import * as homeActions from '../../actions/home-actions/home-actions';
 
 class HomeContainer extends Component {
   /**
@@ -17,6 +17,14 @@ class HomeContainer extends Component {
     this.props.fetchStations();
   }
 
+  selectDepartureStation (train) {
+    console.log(train);
+  }
+
+  selectArrivalStation (train) {
+    console.log(train);
+  }
+
   /**
    * renderContent
    * @param  {Object} stations
@@ -24,7 +32,25 @@ class HomeContainer extends Component {
    */
   renderContent (stations) {
     return (
-      stations.map(station => <Text>{ station.name }</Text>)
+      <View>
+        <Select
+          onSelect={this.selectDepartureStation.bind(this)}
+          style={{marginBottom: 10}}
+          defaultText="Select Departure Station"
+        >
+          { stations.map(station => <Option value={station.name}>{station.name}</Option>) }
+        </Select>
+        <Select
+          onSelect={this.selectArrivalStation.bind(this)}
+          defaultText="Select Arrival Station"
+        >
+          { stations.map(station => <Option value={station.name}>{station.name}</Option>) }
+        </Select>
+        <Button
+          title="Search"
+          color="#841584"
+        />
+      </View>
     );
   }
 
