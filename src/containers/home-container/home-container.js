@@ -43,15 +43,7 @@ class HomeContainer extends Component {
         />
 
         <TouchableHighlight
-          style ={{
-            height: 40,
-            width: '60%',
-            borderRadius: 5,
-            backgroundColor: '#54c488',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: 25,
-          }}>
+          style ={styles.button}>
           <Button
             onPress={() => this.props.fetchTimetable(this.props.home.departureStation, this.props.home.arrivalStation)}
             color="#fff"
@@ -92,12 +84,21 @@ const styles = StyleSheet.create({
   textInput: {
     marginTop: 20,
     marginBottom: 2
+  },
+  button: {
+    height: 40,
+    width: '60%',
+    borderRadius: 5,
+    backgroundColor: '#54c488',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 25,
   }
 });
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    fontSize: 16,
+    fontSize: 14,
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
