@@ -11,7 +11,6 @@ class AppContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up fsf.js to start working on your app!</Text>
         <HomeContainer />
       </View>
     );

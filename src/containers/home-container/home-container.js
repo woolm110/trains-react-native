@@ -6,13 +6,26 @@ import { connect } from 'react-redux';
 
 import * as homeActions from '../../actions/home-actions/home-actions';
 
-class HomePage extends Component {
+import StationsFactory from '../../shared/factories/stations-factory/stations-factory';
+
+class HomeContainer extends Component {
   /**
    * componentDidMount
    * @return {null}
    */
   componentDidMount () {
-    this.props.fetchHome();
+    this.props.fetchStations();
+  }
+
+  /**
+   * renderContent
+   * @param  {Object} stations
+   * @return {JSX}
+   */
+  renderContent (stations) {
+    return (
+      stations.map(station => <Text>{ station.name }</Text>)
+    );
   }
 
   /**
@@ -23,26 +36,21 @@ class HomePage extends Component {
     return (
       <View>
         {
-          <Text>Hello!</Text>
+          !this.props.home.isFetching && this.props.home.data && this.renderContent(this.props.home.data)
         }
       </View>
     );
   }
 }
 
-HomePage.propTypes = {
-  fetchHome: PropTypes.func.isRequired,
+HomeContainer.propTypes = {
+  fetchStations: PropTypes.func.isRequired,
   home: PropTypes.shape({
-    data: PropTypes.shape({
-      title: PropTypes.string,
-      summary: PropTypes.string,
-      items: PropTypes.arrayOf(PropTypes.shape())
-    }),
-    isFetching: PropTypes.bool
+    data: PropTypes.Array
   }).isRequired
 };
 
-HomePage.defaultProps = {
+HomeContainer.defaultProps = {
   home: {
     data: {
       items: []
@@ -73,9 +81,7 @@ function mapDispatchToProps (dispatch) {
   ), dispatch);
 }
 
-const HomeContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomePage);
-
-export default HomeContainer;
+)(HomeContainer);

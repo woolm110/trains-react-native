@@ -1,6 +1,6 @@
 import {
-  REQUEST_HOME,
-  RECEIVE_HOME
+  REQUEST_STATIONS,
+  RECEIVE_STATIONS
 } from '../../actions/home-actions/home-actions';
 
 /**
@@ -11,14 +11,14 @@ import {
  */
 export default function (state = {}, action) {
   switch (action.type) {
-    case REQUEST_HOME:
+    case REQUEST_STATIONS:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case RECEIVE_HOME:
+    case RECEIVE_STATIONS:
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.set
+        data: action.data
       });
     default:
       return state;

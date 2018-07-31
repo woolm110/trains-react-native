@@ -1,15 +1,17 @@
-export const REQUEST_HOME = 'REQUEST_HOME';
-export const RECEIVE_HOME = 'RECEIVE_HOME';
+export const REQUEST_STATIONS = 'REQUEST_STATIONS';
+export const RECEIVE_STATIONS = 'RECEIVE_STATIONS';
+
+import StationsFactory from '../../shared/factories/stations-factory/stations-factory';
 
 /**
  * Action for receiving response from HomePage
  * @param response
- * @returns {{type: string, set: Object}}
+ * @returns {{type: string, data: Object}}
  */
-function receiveHome (response) {
+function receiveStations (response) {
   return {
-    type: RECEIVE_HOME,
-    set: response.data.objects[0]
+    type: RECEIVE_STATIONS,
+    data: response.data.stations
   };
 }
 
@@ -17,22 +19,21 @@ function receiveHome (response) {
  * Request HomePage action
  * @returns {{type: string}}
  */
-function requestHome () {
+function requestStations () {
   return {
-    type: REQUEST_HOME
+    type: REQUEST_STATIONS
   };
 }
 
 /**
- * Async action creator for getting HomePage data
+ * Async action creator for getting pagehome data
  * @returns {function}
  */
-export function fetchHome () {
+export function fetchStations () {
   return dispatch => {
-    dispatch(requestHome());
+    dispatch(requestStations());
 
-    // return ApiService.get(filters)
-    //   .then(response => dispatch(receiveHome(response)));
+    return StationsFactory.getStations().then(response => dispatch(receiveStations(response)));
   };
 }
 
