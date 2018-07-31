@@ -23,12 +23,12 @@ class HomeContainer extends Component {
    * @return {JSX}
    */
   renderContent (stations) {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Text style={styles.textInput}>Departure Station</Text>
         <Picker
           items={stations}
+          value={this.props.home.departureStation}
           onValueChange={value => this.props.updateDepartureStation(value)}
           style={{ ...pickerSelectStyles }}
         />
@@ -36,6 +36,7 @@ class HomeContainer extends Component {
         <Text style={styles.textInput}>Return Station</Text>
         <Picker
           items={stations}
+          value={this.props.home.arrivalStation}
           onValueChange={value => this.props.updateArrivalStation(value)}
           style={{ ...pickerSelectStyles }}
         />

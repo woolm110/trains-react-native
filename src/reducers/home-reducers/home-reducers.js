@@ -5,13 +5,18 @@ import {
   SET_ARRIVAL_STATION
 } from '../../actions/home-actions/home-actions';
 
+const defaultState = {
+  departureStation: 'WAT',
+  arrivalStation: 'QRB'
+};
+
 /**
  * Reducer for updating the homepage
  * @param {Object} state
  * @param {Object} action
  * @returns {Object} updated state
  */
-export default function (state = {}, action) {
+export default function (state = defaultState, action) {
   switch (action.type) {
     case REQUEST_STATIONS:
       return Object.assign({}, state, {
