@@ -6,10 +6,11 @@ import {
   REQUEST_TIMETABLE,
   RECEIVE_TIMETABLE
 } from '../../actions/home-actions/home-actions';
+import appConstants from '../../app.constants.js'
 
 const defaultState = {
-  departureStation: 'WAT',
-  arrivalStation: 'QRB'
+  departureStation: appConstants.departureStation,
+  arrivalStation: appConstants.arrivalStation
 };
 
 /**
@@ -52,11 +53,11 @@ export default function (state = defaultState, action) {
       });
     case REQUEST_TIMETABLE:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetchingTimetable: true
       });
     case RECEIVE_TIMETABLE:
       return Object.assign({}, state, {
-        isFetching: false,
+        isFetchingTimetable: false,
         timetable: action.data
       });
     default:

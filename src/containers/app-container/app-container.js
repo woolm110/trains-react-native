@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import HomeContainer from '../home-container/home-container'
 
@@ -11,7 +11,9 @@ class AppContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <HomeContainer />
+        <ScrollView>
+          <HomeContainer />
+        </ScrollView>
       </View>
     );
   }
@@ -20,7 +22,7 @@ class AppContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
-    maxWidth: '90%',
+    width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto'
   }

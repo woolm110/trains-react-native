@@ -1,7 +1,7 @@
 import ApiService from '../../services/api-service/api-service';
-import AppConstants from '../../../app.constants.js';
+import appConstants from '../../../app.constants.js';
 
-const endPointCredentials = `app_id=${AppConstants.appId}&app_key=${AppConstants.appKey}`;
+const endPointCredentials = `app_id=${appConstants.appId}&app_key=${appConstants.appKey}`;
 
 export default class StationsFactory {
   /**
@@ -10,7 +10,7 @@ export default class StationsFactory {
    */
   static getStations () {
     return ApiService.get(
-      `http://transportapi.com/v3/uk/train/stations/bbox.json?${endPointCredentials}&minlon=-${AppConstants.minLon}&minlat=${AppConstants.minLat}&maxlon=${AppConstants.maxLon}&maxlat=${AppConstants.maxLat}`
+      `http://transportapi.com/v3/uk/train/stations/bbox.json?${endPointCredentials}&minlon=-${appConstants.minLon}&minlat=${appConstants.minLat}&maxlon=${appConstants.maxLon}&maxlat=${appConstants.maxLat}`
     );
   }
 

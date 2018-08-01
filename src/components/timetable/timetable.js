@@ -7,7 +7,6 @@ const Timetable = props => (
     {
       props.trains.length ? props.trains.map(train => (
         <View style={styles.columnsContainer} key={train.train_uid}>
-          <Text style={styles.column}>{train.destination_name}</Text>
           <Text style={styles.column}>{train.aimed_departure_time}</Text>
           <Text style={styles.column}>{train.platform}</Text>
         </View>
@@ -18,17 +17,20 @@ const Timetable = props => (
 
 const styles = StyleSheet.create({
   columnsContainer: {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   column: {
     flex: 1,
     textAlign: 'center',
     color: '#000',
     fontSize: 14,
-    minHeight: 50
+    minHeight: 50,
   },
   resultsWrapper: {
-    marginTop: 40
+    marginTop: 40,
+    width: '100%'
   }
 });
 

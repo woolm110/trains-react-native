@@ -67,7 +67,7 @@ class HomeContainer extends Component {
           !this.props.home.isFetching && this.props.home.stations && this.renderSelectBoxes(this.props.home.stations)
         }
         {
-          !this.props.home.isFetching && this.props.home.timetable && <Timetable trains={this.props.home.timetable} />
+          !this.props.home.isFetchingTimetable && this.props.home.timetable && <Timetable trains={this.props.home.timetable} />
         }
       </View>
     );
@@ -79,7 +79,9 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: '#fff',
     justifyContent: 'center',
-    paddingHorizontal: 10
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
   textInput: {
     marginTop: 20,
