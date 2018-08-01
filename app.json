@@ -1,5 +1,12 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+   "name": "Trns",
+   "icon": "./src/assets/images/app-icon.png",
+   "version": "1.0.0",
+   "slug": "trns",
+   "sdkVersion": "27.0.0",
+   "ios": {
+     "bundleIdentifier": "com.trns.trns"
+   }
   }
 }
