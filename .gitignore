@@ -15,3 +15,122 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# CI/tests
+cms/jshint.xml
+test_xml
+player/tests/reports/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+wheelhouse.tar.xz
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+cms/cms/static/index.html
+develop-eggs/
+dist/
+static/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+src/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Front End App Packages
+node_modules/
+bower_components/
+npm-debug.log.*
+npm-debug.log
+package-lock.json
+
+# Compiled Development Assets
+bundle.js
+bundle.min.js
+build/**/*.css
+*.css.map
+*.js.map
+modernizr-custom.js
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+integration-reports/
+**/screenshots/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# SQLite
+*.sqlite3
+*.sqlite
+*.db
+
+# Vagrant
+.vagrant/
+
+# Editors/IDEs
+.idea
+.vscode
+
+# OsX
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# yarn
+yarn.lock
+
+#IDE
+.idea
+
+# Project ting
+/package.tar
+
